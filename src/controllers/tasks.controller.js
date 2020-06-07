@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import Tasks from "../models/Tasks";
+import Task from "../models/Tasks";
 
 class TasksController {
   listAll = (req, res) => {
-    Tasks.find()
+    Task.find()
       .then(data => res.status(200).json({ data }))
       .catch(err => res.status(500).json({ error: err.message }));
   };

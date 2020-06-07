@@ -1,9 +1,10 @@
 import { Router } from "express";
-import TasksController from "../controllers/tasks.controller";
+import publicRoutes from "./public/routes.public";
+// import privateRoutes from "./private/public.private";
 
 const router = Router();
-const tasks = new TasksController();
 
-router.get("/", tasks.listAll());
+router.use("/public", publicRoutes);
+// router.use("/private", privateRoutes);
 
 export default router;

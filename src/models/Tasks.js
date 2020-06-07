@@ -9,6 +9,6 @@ const TaskSchema = new Schema({
   // Still have to complete Schema's fields (Should see Miro project)
 });
 
-const Tasks = mongoose.model("Task", TaskSchema);
+const Task = mongoose.model("Task", TaskSchema);
 
-export default Tasks;
+export default Task;
