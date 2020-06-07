@@ -1,5 +1,5 @@
 {
-  "name": "corbie_app",
+  "name": "corbie_api",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -20,14 +20,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ingridpitta/Corbie_APP.git"
+    "url": "git+https://github.com/ingridpitta/Corbie_API.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ingridpitta/Corbie_APP/issues"
+    "url": "https://github.com/ingridpitta/Corbie_API/issues"
   },
-  "homepage": "https://github.com/ingridpitta/Corbie_APP#readme",
+  "homepage": "https://github.com/ingridpitta/Corbie_API#readme",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "cors": "^2.8.5",
