@@ -14,7 +14,7 @@
     "clean": "rm -rf dist-server",
     "dev": "npm-run-all build server",
     "dev-watch": "nodemon",
-    "server": "node ./dist-server/app.js",
+    "server": "node ./dist-server/server.js",
     "start": "npm-run-all build server",
     "transpile": "babel ./src --out-dir dist-server"
   },
