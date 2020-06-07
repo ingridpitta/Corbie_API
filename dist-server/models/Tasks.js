@@ -11,7 +11,13 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var Schema = _mongoose["default"].Schema;
 var TaskSchema = new Schema({
-  name: {
+  // user: { type: mongoose.Types.ObjectId, ref: "User", required: true },
+  project: {
+    type: _mongoose["default"].Types.ObjectId,
+    ref: "Project",
+    required: true
+  },
+  title: {
     type: String,
     required: true
   },
@@ -21,9 +27,36 @@ var TaskSchema = new Schema({
   },
   duration: {
     type: Number,
-    requeired: true
-  } // Still have to complete Schema's fields (Should see Miro project)
-
+    required: true
+  },
+  cost: {
+    type: Number,
+    required: false
+  },
+  status: {
+    type: String,
+    required: true,
+    "enum": ["Backlog", "OnGoing", "Done"],
+    "default": "Backlog"
+  },
+  type: {
+    type: String,
+    required: true
+  },
+  profitable: {
+    type: Boolean,
+    required: true,
+    "default": true
+  },
+  creationDate: {
+    type: Date,
+    required: true,
+    "default": new Date()
+  },
+  dueDate: {
+    type: Date,
+    required: true
+  }
 });
 
 var Task = _mongoose["default"].model("Task", TaskSchema);
