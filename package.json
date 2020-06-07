@@ -1,0 +1,51 @@
+{
+  "name": "corbie_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "nodemonConfig": {
+    "exec": "npm run dev",
+    "watch": [
+      "./server/*"
+    ]
+  },
+  "scripts": {
+    "build": "npm-run-all clean transpile",
+    "clean": "rm -rf dist-server",
+    "dev": "npm-run-all build server",
+    "dev-watch": "nodemon",
+    "server": "node ./dist-server/app.js",
+    "start": "npm-run-all build server",
+    "transpile": "babel ./server --out-dir dist-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ingridpitta/Corbie_APP.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ingridpitta/Corbie_APP/issues"
+  },
+  "homepage": "https://github.com/ingridpitta/Corbie_APP#readme",
+  "dependencies": {
+    "bcrypt": "^4.0.1",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "joi": "^14.3.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.9.15"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.1.0",
+    "eslint-plugin-import": "^2.20.2",
+    "nodemon": "^2.0.4"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
+  }
+}
