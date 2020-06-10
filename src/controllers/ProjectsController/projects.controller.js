@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Project from "../../models/Projects";
+import {Project} from "../../models";
 
 class ProjectsController {
   listAll = (req, res) => {

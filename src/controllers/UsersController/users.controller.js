@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import User from "../../models/Users";
+import {User} from "../../models";
 
 class UsersController {
   listAll = (req, res) => {

@@ -11,13 +11,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _Users = _interopRequireDefault(require("../../models/Users"));
+var _models = require("../../models");
 
 /* eslint-disable no-console */
 var UsersController = function UsersController() {
   (0, _classCallCheck2["default"])(this, UsersController);
   (0, _defineProperty2["default"])(this, "listAll", function (req, res) {
-    _Users["default"].find().then(function (data) {
+    _models.User.find().then(function (data) {
       return res.status(200).json({
         data: data
       });

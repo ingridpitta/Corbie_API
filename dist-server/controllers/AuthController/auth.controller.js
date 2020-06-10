@@ -21,7 +21,7 @@ var _jsonwebtoken = _interopRequireDefault(require("jsonwebtoken"));
 
 var _utils = require("../../utils");
 
-var _Users = _interopRequireDefault(require("../../models/Users"));
+var _models = require("../../models");
 
 var AuthController = function AuthController() {
   (0, _classCallCheck2["default"])(this, AuthController);

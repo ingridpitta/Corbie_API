@@ -1,7 +1,7 @@
 import joi from "joi";
 import jwt from "jsonwebtoken";
 import { paramsSchema, passwordManager } from "../../utils";
-import User from "../../models/Users";
+import { User } from "../../models";
 
 class AuthController {
   signup = async (req, res) => {

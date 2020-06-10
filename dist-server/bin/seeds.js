@@ -2,11 +2,7 @@
 
 var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefault");
 
-var _Tasks = _interopRequireDefault(require("../models/Tasks"));
-
-var _Users = _interopRequireDefault(require("../models/Users"));
-
-var _Projects = _interopRequireDefault(require("../models/Projects"));
+var _models = require("../models");
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
@@ -45,7 +41,7 @@ _mongoose["default"].connect("mongodb://localhost/corbie", {
   return console.log("Connected to database!");
 });
 
-_Users["default"].insertMany(usersList).then(function () {
+_models.User.insertMany(usersList).then(function () {
   console.log("Users inserted");
 
   _mongoose["default"].connection.close();

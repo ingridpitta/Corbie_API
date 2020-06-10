@@ -11,13 +11,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _Tasks = _interopRequireDefault(require("../../models/Tasks"));
+var _models = require("../../models");
 
 /* eslint-disable no-console */
 var TasksController = function TasksController() {
   (0, _classCallCheck2["default"])(this, TasksController);
   (0, _defineProperty2["default"])(this, "listAll", function (req, res) {
-    _Tasks["default"].find().then(function (data) {
+    _models.Task.find().then(function (data) {
       return res.status(200).json({
         data: data
       });

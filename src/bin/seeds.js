@@ -1,6 +1,4 @@
-import Task from "../models/Tasks";
-import User from "../models/Users";
-import Project from "../models/Projects";
+import { Project, Task, User } from "../models";
 import mongoose from "mongoose";
 
 const tasksList = [
@@ -36,7 +34,7 @@ const projectsList = [
     status: "ONGOING",
     dueDate: new Date()
   }
-]
+];
 
 mongoose
   .connect("mongodb://localhost/corbie", {
@@ -46,8 +44,7 @@ mongoose
   // eslint-disable-next-line no-console
   .then(() => console.log("Connected to database!"));
 
-User.insertMany(usersList)
-  .then(() => {
-    console.log("Users inserted");
-     mongoose.connection.close();
-  })
+User.insertMany(usersList).then(() => {
+  console.log("Users inserted");
+  mongoose.connection.close();
+});

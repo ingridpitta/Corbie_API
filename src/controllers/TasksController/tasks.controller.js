@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import Task from "../../models/Tasks";
+import {Task} from "../../models";
 
 class TasksController {
   listAll = (req, res) => {
