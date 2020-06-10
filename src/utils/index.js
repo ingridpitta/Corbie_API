@@ -1,5 +1,5 @@
 import { name, email, password, telephone } from "./validation";
+import PasswordManager from "./password";
 
-const paramSchema = { name, email, password, telephone };
-
-export default paramSchema;
+export const paramSchema = { name, email, password, telephone };
+export const passwordManager = new PasswordManager();

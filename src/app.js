@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import apiRoutes from "./routes/apiRoutes";
 
+require("dotenv").config();
 require("./database/mongoose");
 
 class App {

@@ -9,11 +9,11 @@ exports["default"] = void 0;
 
 var _express = require("express");
 
-var _tasks = _interopRequireDefault(require("../../controllers/tasks.controller"));
+var _tasks = _interopRequireDefault(require("../../controllers/TasksController/tasks.controller"));
 
-var _users = _interopRequireDefault(require("../../controllers/users.controller"));
+var _users = _interopRequireDefault(require("../../controllers/UsersController/users.controller"));
 
-var _projects = _interopRequireDefault(require("../../controllers/projects.controller"));
+var _projects = _interopRequireDefault(require("../../controllers/ProjectsController/projects.controller"));
 
 var router = (0, _express.Router)();
 var tasks = new _tasks["default"]();

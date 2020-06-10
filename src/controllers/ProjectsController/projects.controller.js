@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import Task from "../models/Tasks";
+import Project from "../../models/Projects";
 
-class TasksController {
+class ProjectsController {
   listAll = (req, res) => {
-    Task.find()
+    Project.find()
       .then(data => res.status(200).json({ data }))
       .catch(err => res.status(500).json({ error: err.message }));
   };
@@ -25,4 +25,4 @@ class TasksController {
   };
 }
 
-export default TasksController;
+export default ProjectsController;

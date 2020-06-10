@@ -11,13 +11,13 @@ var _classCallCheck2 = _interopRequireDefault(require("@babel/runtime/helpers/cl
 
 var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/defineProperty"));
 
-var _Projects = _interopRequireDefault(require("../models/Projects"));
+var _Users = _interopRequireDefault(require("../../models/Users"));
 
 /* eslint-disable no-console */
-var ProjectsController = function ProjectsController() {
-  (0, _classCallCheck2["default"])(this, ProjectsController);
+var UsersController = function UsersController() {
+  (0, _classCallCheck2["default"])(this, UsersController);
   (0, _defineProperty2["default"])(this, "listAll", function (req, res) {
-    _Projects["default"].find().then(function (data) {
+    _Users["default"].find().then(function (data) {
       return res.status(200).json({
         data: data
       });
@@ -41,5 +41,5 @@ var ProjectsController = function ProjectsController() {
   });
 };
 
-var _default = ProjectsController;
+var _default = UsersController;
 exports["default"] = _default;

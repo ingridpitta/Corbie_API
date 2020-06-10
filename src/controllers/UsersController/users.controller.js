@@ -1,9 +1,9 @@
 /* eslint-disable no-console */
-import Project from "../models/Projects";
+import User from "../../models/Users";
 
-class ProjectsController {
+class UsersController {
   listAll = (req, res) => {
-    Project.find()
+    User.find()
       .then(data => res.status(200).json({ data }))
       .catch(err => res.status(500).json({ error: err.message }));
   };
@@ -25,4 +25,4 @@ class ProjectsController {
   };
 }
 
-export default ProjectsController;
+export default UsersController;
