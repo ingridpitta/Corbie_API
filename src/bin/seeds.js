@@ -19,7 +19,7 @@ const usersList = [
   {
     name: "ingrid pitta",
     username: "ingridpitta",
-    password: passwordManager.encrypt("123456");
+    password: passwordManager.encrypt("123456"),
     role: "project manager",
     email: "ingridpitta@email.com"
   }
