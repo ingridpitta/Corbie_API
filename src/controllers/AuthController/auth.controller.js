@@ -39,9 +39,9 @@ class AuthController {
   };
 
   login = async (req, res) => {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
-    const userFromDb = await User.findOne({ email });
+    const userFromDb = await User.findOne({ username });
 
     if (!userFromDb) {
       res.status(400).json({ message: "Credenciais não conferem" });

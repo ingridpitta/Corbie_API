@@ -1,4 +1,5 @@
 import { Project, Task, User } from "../models";
+import { passwordManager } from "../utils";
 import mongoose from "mongoose";
 
 const tasksList = [
@@ -18,7 +19,7 @@ const usersList = [
   {
     name: "ingrid pitta",
     username: "ingridpitta",
-    password: "123456",
+    password: passwordManager.encrypt("123456");
     role: "project manager",
     email: "ingridpitta@email.com"
   }
