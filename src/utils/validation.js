@@ -1,7 +1,6 @@
 import joi from "joi";
 
 const nameRegex = /^[a-zA-z]/;
-const phoneRegex = /^\(\d{2,3}\)\d{4,5}-\d{4}$/;
 
 const validation = (field, min, max, mask) => ({
   language: {
@@ -48,8 +47,9 @@ export const password = joi
   .max(100)
   .options(validation("Senha", 5, 100));
 
-export const telephone = joi
+export const username = joi
   .string()
   .required()
-  .regex(phoneRegex)
-  .options(validation("Telefone", undefined, undefined, "(99)99999-9999"));
+  .min(5)
+  .max(10)
+  .options(validation("Usuário", 5, 10));

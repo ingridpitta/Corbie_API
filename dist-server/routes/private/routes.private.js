@@ -15,8 +15,7 @@ var users = new _controllers.UsersController();
 var projects = new _controllers.ProjectsController(); //Routes
 //User
 
-router.get("/users", users.listAll);
-router.get("/user/:id", users.listOne); //Task
+router.get("/user", users.listAll); //Task
 
 router.get("/tasks", tasks.listAll); //Project
 

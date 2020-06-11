@@ -15,7 +15,7 @@ var paramSchema = {
   name: _validation.name,
   email: _validation.email,
   password: _validation.password,
-  telephone: _validation.telephone
+  username: _validation.username
 };
 exports.paramSchema = paramSchema;
 var passwordManager = new _password["default"]();

@@ -14,8 +14,7 @@ const projects = new ProjectsController();
 //Routes
 
 //User
-router.get("/users", users.listAll);
-router.get("/user/:id", users.listOne);
+router.get("/user", users.listAll);
 
 //Task
 router.get("/tasks", tasks.listAll);

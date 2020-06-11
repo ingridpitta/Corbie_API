@@ -27,23 +27,66 @@ var AuthController = function AuthController() {
   (0, _classCallCheck2["default"])(this, AuthController);
   (0, _defineProperty2["default"])(this, "signup", /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-      var name, password, email, telephone, signupSchema, validation;
+      var name, username, password, email, signupSchema, validation, errors, userExist;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              name = _utils.paramsSchema.name, password = _utils.paramsSchema.password, email = _utils.paramsSchema.email, telephone = _utils.paramsSchema.telephone;
+              name = _utils.paramsSchema.name, username = _utils.paramsSchema.username, password = _utils.paramsSchema.password, email = _utils.paramsSchema.email;
               signupSchema = _joi["default"].object().optional({
                 abortEarly: false
               }).keys({
                 name: name,
+                username: username,
                 password: password,
-                email: email,
-                telephone: telephone
+                email: email
               });
               validation = _joi["default"].validate(req.body, signupSchema);
 
-            case 3:
+              if (!validation.error) {
+                _context.next = 7;
+                break;
+              }
+
+              errors = validation.error.details.map(function (error) {
+                return {
+                  error: error.message,
+                  field: error.context.key
+                };
+              });
+              res.status(400).json(errors);
+              return _context.abrupt("return");
+
+            case 7:
+              _context.next = 9;
+              return _models.User.findOne({
+                email: req.body.email
+              });
+
+            case 9:
+              userExist = _context.sent;
+
+              if (!userExist) {
+                _context.next = 13;
+                break;
+              }
+
+              res.status(400).json({
+                message: "Usuário já cadastrado"
+              });
+              return _context.abrupt("return");
+
+            case 13:
+              req.body.password = _utils.passwordManager.encrypt(req.body.password);
+              _context.next = 16;
+              return _models.User.create(req.body);
+
+            case 16:
+              res.status(200).json({
+                message: "Usuário cadastrado com sucesso"
+              });
+
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -53,6 +96,80 @@ var AuthController = function AuthController() {
 
     return function (_x, _x2) {
       return _ref.apply(this, arguments);
+    };
+  }());
+  (0, _defineProperty2["default"])(this, "login", /*#__PURE__*/function () {
+    var _ref2 = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee2(req, res) {
+      var _req$body, email, password, userFromDb, isPasswordValid, token, refreshToken;
+
+      return _regenerator["default"].wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _req$body = req.body, email = _req$body.email, password = _req$body.password;
+              _context2.next = 3;
+              return _models.User.findOne({
+                email: email
+              });
+
+            case 3:
+              userFromDb = _context2.sent;
+
+              if (userFromDb) {
+                _context2.next = 7;
+                break;
+              }
+
+              res.status(400).json({
+                message: "Credenciais não conferem"
+              });
+              return _context2.abrupt("return");
+
+            case 7:
+              isPasswordValid = _utils.passwordManager.verify(password, userFromDb.password);
+
+              if (isPasswordValid) {
+                _context2.next = 11;
+                break;
+              }
+
+              res.status(401).json({
+                message: "Credenciais não conferem"
+              });
+              return _context2.abrupt("return");
+
+            case 11:
+              token = _jsonwebtoken["default"].sign({
+                name: userFromDb.name,
+                email: userFromDb.email,
+                id: userFromDb._id
+              }, process.env.JWT_TOKEN, {
+                expiresIn: process.env.JWT_TOKEN_EXPIRATION
+              });
+              refreshToken = _jsonwebtoken["default"].sign({
+                name: userFromDb.name,
+                email: userFromDb.email,
+                id: userFromDb._id,
+                token: token
+              }, process.env.JWT_TOKEN, {
+                expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRATION
+              });
+              res.status(200).json({
+                type: "Bearer",
+                token: token,
+                refreshToken: refreshToken
+              });
+
+            case 14:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2);
+    }));
+
+    return function (_x3, _x4) {
+      return _ref2.apply(this, arguments);
     };
   }());
 };
