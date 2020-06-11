@@ -19,7 +19,7 @@ var tasksList = [{
 var usersList = [{
   name: "ingrid pitta",
   username: "ingridpitta",
-  password: "12345",
+  password: "123456",
   role: "project manager",
   email: "ingridpitta@email.com"
 }];

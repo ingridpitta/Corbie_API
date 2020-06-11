@@ -1,26 +1,35 @@
 /* eslint-disable no-console */
-import {User} from "../../models";
+import { User } from "../../models";
+import { passwordManager } from "../../utils";
 
 class UsersController {
-  listAll = (req, res) => {
-    User.find()
-      .then(data => res.status(200).json({ data }))
-      .catch(err => res.status(500).json({ error: err.message }));
+  listAll = async (req, res) => {
+    const usersFromDb = await User.find();
+
+    res.status(200).json({ users: usersFromDb });
   };
 
-  listOne = (req, res) => {
-    console.log(req);
+  listOne = async (req, res) => {
+    const { id } = req.user;
+
+    const userFromDb = await User.findById({ id });
+
+    res.status(200).json({ user: userFromDb });
   };
 
-  insert = (req, res) => {
-    console.log(req);
+  editOne = async (req, res) => {
+    const {
+      name,
+      email,
+      currentPassword,
+      newPassword,
+      confirmationNewPassword
+    } = req.body;
+
+    
   };
 
-  editOne = (req, res) => {
-    console.log(req);
-  };
-
-  delete = (req, res) => {
+  delete = async (req, res) => {
     console.log(req);
   };
 }
