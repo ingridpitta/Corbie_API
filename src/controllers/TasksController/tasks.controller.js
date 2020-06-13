@@ -8,19 +8,33 @@ class TasksController {
       .catch(err => res.status(500).json({ error: err.message }));
   };
 
-  listOne = (req, res) => {
-    console.log(req);
+  listOne = async (req, res) => {
+    const { id } = req.params;
+    const taskFromDb = await Task.findById({ id });
+
+    res.status(200).json({ task: taskFromDb });
   };
 
-  insert = (req, res) => {
-    console.log(req);
+  insertOne = async (req, res) => {
+    const {title, description, duration, cost, status, type, profitable, dueDate } = req.body;
+
+    const data = {
+      title, description, duration, cost, status, type, profitable, dueDate 
+    }
+
+    const newTask = await Task.insertOne(data);
+
+    res.status(200).json({newTask});
+
   };
 
   editOne = (req, res) => {
+    const { id } = req.params;
     console.log(req);
   };
 
-  delete = (req, res) => {
+  deleteOne = (req, res) => {
+    const { id } = req.params;
     console.log(req);
   };
 }

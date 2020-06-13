@@ -43,13 +43,13 @@ export const email = joi
 export const password = joi
   .string()
   .required()
-  .min(5)
+  .min(6)
   .max(100)
   .options(validation("Senha", 5, 100));
 
 export const username = joi
   .string()
   .required()
-  .min(5)
+  .min(6)
   .max(10)
   .options(validation("Usuário", 5, 10));

@@ -1,16 +1,22 @@
 import joi from "joi";
 import jwt from "jsonwebtoken";
-import { paramsSchema, passwordManager } from "../../utils";
+import { paramSchema, passwordManager } from "../../utils";
 import { User } from "../../models";
 
 class AuthController {
   signup = async (req, res) => {
-    const { name, username, password, email } = paramsSchema;
+    const { name, username, password, email } = paramSchema;
+    console.log({paramSchema, body: req.body})
 
     const signupSchema = joi
       .object()
-      .optional({ abortEarly: false })
-      .keys({ name, username, password, email });
+      .options({ abortEarly: false })
+      .keys({
+        name,
+        password,
+        email,
+        username
+      });
 
     const validation = joi.validate(req.body, signupSchema);
 

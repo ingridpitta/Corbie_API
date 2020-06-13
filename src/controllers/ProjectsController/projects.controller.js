@@ -9,18 +9,21 @@ class ProjectsController {
   };
 
   listOne = (req, res) => {
+    const { id } = req.params;
     console.log(req);
   };
 
-  insert = (req, res) => {
+  insertOne = (req, res) => {
     console.log(req);
   };
 
   editOne = (req, res) => {
+    const { id } = req.params;
     console.log(req);
   };
 
-  delete = (req, res) => {
+  deleteOne = (req, res) => {
+    const { id } = req.params;
     console.log(req);
   };
 }
