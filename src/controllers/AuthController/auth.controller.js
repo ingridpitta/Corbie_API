@@ -6,7 +6,6 @@ import { User } from "../../models";
 class AuthController {
   signup = async (req, res) => {
     const { name, username, password, email } = paramSchema;
-    console.log({paramSchema, body: req.body})
 
     const signupSchema = joi
       .object()
@@ -67,7 +66,7 @@ class AuthController {
     const token = jwt.sign(
       { name: userFromDb.name, email: userFromDb.email, id: userFromDb._id },
       process.env.JWT_TOKEN,
-      {expiresIn: process.env.JWT_TOKEN_EXPIRATION}
+      { expiresIn: process.env.JWT_TOKEN_EXPIRATION }
     );
 
     const refreshToken = jwt.sign(
@@ -78,11 +77,12 @@ class AuthController {
         token
       },
       process.env.JWT_TOKEN,
-      {expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRATION}
+      { expiresIn: process.env.JWT_REFRESH_TOKEN_EXPIRATION }
     );
 
     res.status(200).json({
       type: "Bearer",
+      id: userFromDb._id,
       token,
       refreshToken
     });

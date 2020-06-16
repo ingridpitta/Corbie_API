@@ -33,10 +33,6 @@ var AuthController = function AuthController() {
           switch (_context.prev = _context.next) {
             case 0:
               name = _utils.paramSchema.name, username = _utils.paramSchema.username, password = _utils.paramSchema.password, email = _utils.paramSchema.email;
-              console.log({
-                paramSchema: _utils.paramSchema,
-                body: req.body
-              });
               signupSchema = _joi["default"].object().options({
                 abortEarly: false
               }).keys({
@@ -48,7 +44,7 @@ var AuthController = function AuthController() {
               validation = _joi["default"].validate(req.body, signupSchema);
 
               if (!validation.error) {
-                _context.next = 8;
+                _context.next = 7;
                 break;
               }
 
@@ -61,17 +57,17 @@ var AuthController = function AuthController() {
               res.status(400).json(errors);
               return _context.abrupt("return");
 
-            case 8:
-              _context.next = 10;
+            case 7:
+              _context.next = 9;
               return _models.User.findOne({
                 email: req.body.email
               });
 
-            case 10:
+            case 9:
               userExist = _context.sent;
 
               if (!userExist) {
-                _context.next = 14;
+                _context.next = 13;
                 break;
               }
 
@@ -80,17 +76,17 @@ var AuthController = function AuthController() {
               });
               return _context.abrupt("return");
 
-            case 14:
+            case 13:
               req.body.password = _utils.passwordManager.encrypt(req.body.password);
-              _context.next = 17;
+              _context.next = 16;
               return _models.User.create(req.body);
 
-            case 17:
+            case 16:
               res.status(200).json({
                 message: "Usuário cadastrado com sucesso"
               });
 
-            case 18:
+            case 17:
             case "end":
               return _context.stop();
           }
@@ -160,6 +156,7 @@ var AuthController = function AuthController() {
               });
               res.status(200).json({
                 type: "Bearer",
+                id: userFromDb._id,
                 token: token,
                 refreshToken: refreshToken
               });
