@@ -57,11 +57,9 @@ var UsersController = function UsersController() {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              id = req.params.id;
+              id = req.user.id;
               _context2.next = 3;
-              return _models.User.findById({
-                id: id
-              });
+              return _models.User.findById(id);
 
             case 3:
               userFromDb = _context2.sent;

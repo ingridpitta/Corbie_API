@@ -10,9 +10,8 @@ class UsersController {
   };
 
   listOne = async (req, res) => {
-    const { id } = req.params;
-
-    const userFromDb = await User.findById({ id });
+    const {id} = req.user;
+    const userFromDb = await User.findById(id);
 
     res.status(200).json({ user: userFromDb });
   };

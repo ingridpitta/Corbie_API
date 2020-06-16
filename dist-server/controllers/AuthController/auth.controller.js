@@ -156,7 +156,6 @@ var AuthController = function AuthController() {
               });
               res.status(200).json({
                 type: "Bearer",
-                id: userFromDb._id,
                 token: token,
                 refreshToken: refreshToken
               });
