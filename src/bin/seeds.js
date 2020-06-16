@@ -11,7 +11,8 @@ const tasksList = [
     status: "OnGoing",
     type: "Planning",
     profitable: true,
-    dueDate: new Date()
+    dueDate: new Date(),
+    project: "5ee927a8145ad11e5b404b20"
   }
 ];
 
@@ -33,7 +34,8 @@ const projectsList = [
     duration: 120,
     cost: 0,
     status: "ONGOING",
-    dueDate: new Date()
+    dueDate: new Date(),
+    user: "5ee92748acef231df1584a41"
   }
 ];
 
@@ -45,7 +47,17 @@ mongoose
   // eslint-disable-next-line no-console
   .then(() => console.log("Connected to database!"));
 
-User.insertMany(usersList).then(() => {
-  console.log("Users inserted");
-  mongoose.connection.close();
-});
+// User.insertMany(usersList).then(() => {
+//   console.log("Users inserted");
+//   mongoose.connection.close();
+// });
+
+// Project.insertMany(projectsList).then(() => {
+//   console.log("Projects inserted");
+//   mongoose.connection.close();
+// });
+
+// Task.insertMany(tasksList).then(() => {
+//   console.log("Tasks inserted");
+//   mongoose.connection.close();
+// });

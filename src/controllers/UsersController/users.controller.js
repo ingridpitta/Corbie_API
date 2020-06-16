@@ -55,7 +55,7 @@ class UsersController {
       try {
         await User.findByIdAndUpdate(req.user.id, {password: passwordManager.encrypt(newPassword)},  { useFindAndModify: true });
       } catch(error) {
-        res.status(500).json({message: "Error: Probelma no servidor de banco de dados"});
+        res.status(500).json({message: "Error: Problema no servidor de banco de dados"});
 
         return
       }

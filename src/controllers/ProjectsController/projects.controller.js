@@ -1,30 +1,67 @@
 /* eslint-disable no-console */
-import {Project} from "../../models";
+import { Project } from "../../models";
 
 class ProjectsController {
-  listAll = (req, res) => {
-    Project.find()
-      .then(data => res.status(200).json({ data }))
-      .catch(err => res.status(500).json({ error: err.message }));
+  listAll = async (req, res) => {
+    const projectsFromDb = await Project.find();
+
+    res.status(200).json({ projects: projectsFromDb });
   };
 
-  listOne = (req, res) => {
+  listOne = async (req, res) => {
     const { id } = req.params;
-    console.log(req);
+    const projectFromDb = await Project.findById({ id });
+
+    res.status(200).json({ project: projectFromDb });
   };
 
-  insertOne = (req, res) => {
-    console.log(req);
+  insertOne = async (req, res) => {
+    const { user } = req;
+
+    const data = {
+      ...req.body,
+      user: user._id
+    };
+
+    const newProject = await Project.insertOne(data);
+
+    res.status(200).json({ newProject });
   };
 
-  editOne = (req, res) => {
+  editOne = async (req, res) => {
     const { id } = req.params;
-    console.log(req);
+
+    const project = await Project.findById(id);
+
+    if (project) {
+      const data = {
+        ...req.body
+      };
+
+      for (const prop in data) {
+        if (!data[prop]) delete data[prop];
+      }
+
+      const editedProject = await Project.findByIdAndUpdate(id, data, {
+        useFindAndModify: true
+      });
+
+      res.status(200).json({ editedProject });
+    }
   };
 
-  deleteOne = (req, res) => {
+  deleteOne = async (req, res) => {
     const { id } = req.params;
-    console.log(req);
+
+    try {
+      await Project.findByIdAndDelete(id);
+
+      res.status(200).json({ message: "Projeto deletado com sucesso" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Error: Probelma no servidor de banco de dados" });
+    }
   };
 }
 

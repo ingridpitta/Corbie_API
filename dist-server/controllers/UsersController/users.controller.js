@@ -160,7 +160,7 @@ var UsersController = function UsersController() {
               _context3.prev = 23;
               _context3.t0 = _context3["catch"](18);
               res.status(500).json({
-                message: "Error: Probelma no servidor de banco de dados"
+                message: "Error: Problema no servidor de banco de dados"
               });
               return _context3.abrupt("return");
 

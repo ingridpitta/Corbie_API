@@ -16,7 +16,8 @@ var tasksList = [{
   status: "OnGoing",
   type: "Planning",
   profitable: true,
-  dueDate: new Date()
+  dueDate: new Date(),
+  project: "5ee927a8145ad11e5b404b20"
 }];
 var usersList = [{
   name: "ingrid pitta",
@@ -32,7 +33,8 @@ var projectsList = [{
   duration: 120,
   cost: 0,
   status: "ONGOING",
-  dueDate: new Date()
+  dueDate: new Date(),
+  user: "5ee92748acef231df1584a41"
 }];
 
 _mongoose["default"].connect("mongodb://localhost/corbie", {
@@ -41,10 +43,15 @@ _mongoose["default"].connect("mongodb://localhost/corbie", {
 }) // eslint-disable-next-line no-console
 .then(function () {
   return console.log("Connected to database!");
-});
-
-_models.User.insertMany(usersList).then(function () {
-  console.log("Users inserted");
-
-  _mongoose["default"].connection.close();
-});
+}); // User.insertMany(usersList).then(() => {
+//   console.log("Users inserted");
+//   mongoose.connection.close();
+// });
+// Project.insertMany(projectsList).then(() => {
+//   console.log("Projects inserted");
+//   mongoose.connection.close();
+// });
+// Task.insertMany(tasksList).then(() => {
+//   console.log("Tasks inserted");
+//   mongoose.connection.close();
+// });

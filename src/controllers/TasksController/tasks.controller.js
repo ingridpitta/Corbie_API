@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import {Task} from "../../models";
+import { Task } from "../../models";
 
 class TasksController {
-  listAll = (req, res) => {
-    Task.find()
-      .then(data => res.status(200).json({ data }))
-      .catch(err => res.status(500).json({ error: err.message }));
+  listAll = async (req, res) => {
+    const tasksFromDb = await Task.find();
+
+    res.status(200).json({ tasks: tasksFromDb });
   };
 
   listOne = async (req, res) => {
@@ -16,26 +16,52 @@ class TasksController {
   };
 
   insertOne = async (req, res) => {
-    const {title, description, duration, cost, status, type, profitable, dueDate } = req.body;
+    const { id } = req.params;
 
     const data = {
-      title, description, duration, cost, status, type, profitable, dueDate 
-    }
+      ...req.body,
+      project: id
+    };
 
     const newTask = await Task.insertOne(data);
 
-    res.status(200).json({newTask});
-
+    res.status(200).json({ newTask });
   };
 
-  editOne = (req, res) => {
+  editOne = async (req, res) => {
     const { id } = req.params;
-    console.log(req);
+
+    const task = await Task.findById(id);
+
+    if (task) {
+      const data = {
+        ...req.body
+      };
+
+      for (const prop in data) {
+        if (!data[prop]) delete data[prop];
+      }
+
+      const editedTask = await Task.findByIdAndUpdate(id, data, {
+        useFindAndModify: true
+      });
+
+      res.status(200).json({ editedTask });
+    }
   };
 
-  deleteOne = (req, res) => {
+  deleteOne = async (req, res) => {
     const { id } = req.params;
-    console.log(req);
+
+    try {
+      await Task.findByIdAndDelete(id);
+
+      res.status(200).json({ message: "Task deletada com sucesso" });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Error: Probelma no servidor de banco de dados" });
+    }
   };
 }
 

@@ -22,7 +22,8 @@ router["delete"]("/user/delete", users.deleteOne); //Task
 
 router.get("/tasks", tasks.listAll);
 router.get("/task/:id", tasks.listOne);
-router.post("/task/new", tasks.insertOne);
+router.post("/task/new/:id", tasks.insertOne); // Project`s id!!!
+
 router.put("/task/update/:id", tasks.editOne);
 router["delete"]("/task/delete/:id", tasks.deleteOne); //Project
 
