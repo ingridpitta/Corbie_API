@@ -30,9 +30,11 @@ var TasksController = function TasksController() {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              id = req.user.id;
+              id = req.params.id;
               _context.next = 3;
-              return _models.Task.find(id);
+              return _models.Task.find({
+                project: id
+              });
 
             case 3:
               tasksFromDb = _context.sent;

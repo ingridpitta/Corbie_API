@@ -48,7 +48,8 @@ router.get("/user", users.listOne);
 router.put("/user", users.editOne);
 router["delete"]("/user", users.deleteOne); //Task
 
-router.get("/tasks", tasks.listAll);
+router.get("/tasks/:id", tasks.listAll); // Project`s id!!!
+
 router.get("/task/:id", tasks.listOne);
 router.post("/task/:id", tasks.insertOne); // Project`s id!!!
 
