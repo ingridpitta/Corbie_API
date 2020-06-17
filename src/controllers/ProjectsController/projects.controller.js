@@ -3,14 +3,15 @@ import { Project } from "../../models";
 
 class ProjectsController {
   listAll = async (req, res) => {
-    const projectsFromDb = await Project.find();
+    const { id } = req.user;
+    const projectsFromDb = await Project.findById(id);
 
     res.status(200).json({ projects: projectsFromDb });
   };
 
   listOne = async (req, res) => {
     const { id } = req.params;
-    const projectFromDb = await Project.findById({ id });
+    const projectFromDb = await Project.findById(id);
 
     res.status(200).json({ project: projectFromDb });
   };
