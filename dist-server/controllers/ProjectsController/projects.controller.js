@@ -32,7 +32,9 @@ var ProjectsController = function ProjectsController() {
             case 0:
               id = req.user.id;
               _context.next = 3;
-              return _models.Project.findById(id);
+              return _models.Project.find({
+                user: id
+              });
 
             case 3:
               projectsFromDb = _context.sent;
