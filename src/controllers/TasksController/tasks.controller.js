@@ -3,14 +3,15 @@ import { Task } from "../../models";
 
 class TasksController {
   listAll = async (req, res) => {
-    const tasksFromDb = await Task.find();
+    const {id} = req.user;
+    const tasksFromDb = await Task.find(id);
 
     res.status(200).json({ tasks: tasksFromDb });
   };
 
   listOne = async (req, res) => {
     const { id } = req.params;
-    const taskFromDb = await Task.findById({ id });
+    const taskFromDb = await Task.findById(id);
 
     res.status(200).json({ task: taskFromDb });
   };

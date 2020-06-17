@@ -25,21 +25,22 @@ var TasksController = function TasksController() {
   (0, _classCallCheck2["default"])(this, TasksController);
   (0, _defineProperty2["default"])(this, "listAll", /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-      var tasksFromDb;
+      var id, tasksFromDb;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return _models.Task.find();
+              id = req.user.id;
+              _context.next = 3;
+              return _models.Task.find(id);
 
-            case 2:
+            case 3:
               tasksFromDb = _context.sent;
               res.status(200).json({
                 tasks: tasksFromDb
               });
 
-            case 4:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -60,9 +61,7 @@ var TasksController = function TasksController() {
             case 0:
               id = req.params.id;
               _context2.next = 3;
-              return _models.Task.findById({
-                id: id
-              });
+              return _models.Task.findById(id);
 
             case 3:
               taskFromDb = _context2.sent;
