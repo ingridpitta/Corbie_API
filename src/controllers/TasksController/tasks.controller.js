@@ -26,7 +26,7 @@ class TasksController {
 
     const newTask = await Task.insertOne(data);
 
-    res.status(200).json({ newTask });
+    res.status(200).json({ task: newTask });
   };
 
   editOne = async (req, res) => {
@@ -47,7 +47,7 @@ class TasksController {
         useFindAndModify: true
       });
 
-      res.status(200).json({ editedTask });
+      res.status(200).json({ task: editedTask });
     }
   };
 

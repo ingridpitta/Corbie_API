@@ -29,7 +29,7 @@ class UsersController {
     const userEmailExists = await User.findOne({ email });
 
     if(userEmailExists && userEmailExists._id.toString() !== req.user.id){
-      res.status(403).json({message: "Email já cadastrado"});
+      res.status(403).json({message: "Operação não autorizada"});
 
       return
     }

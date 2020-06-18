@@ -26,7 +26,7 @@ class ProjectsController {
 
     const newProject = await Project.insertOne(data);
 
-    res.status(200).json({ newProject });
+    res.status(200).json({ project: newProject });
   };
 
   editOne = async (req, res) => {
@@ -47,7 +47,7 @@ class ProjectsController {
         useFindAndModify: true
       });
 
-      res.status(200).json({ editedProject });
+      res.status(200).json({ project: editedProject });
     }
   };
 
