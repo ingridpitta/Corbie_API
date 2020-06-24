@@ -6,7 +6,7 @@ import { User } from "../../models";
 class AuthController {
   signup = async (req, res) => {
     const { name, username, password, email } = paramSchema;
-
+console.log(req.body)
     const signupSchema = joi
       .object()
       .options({ abortEarly: false })
