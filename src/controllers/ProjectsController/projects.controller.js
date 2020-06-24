@@ -18,13 +18,12 @@ class ProjectsController {
 
   insertOne = async (req, res) => {
     const { user } = req;
-
     const data = {
       ...req.body,
-      user: user._id
+      user: user.id
     };
 
-    const newProject = await Project.insertOne(data);
+    const newProject = await Project.create(data);
 
     res.status(200).json({ project: newProject });
   };

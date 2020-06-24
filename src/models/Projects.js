@@ -10,7 +10,6 @@ const projectSchema = new Schema({
   cost: { type: Number, required: false },
   status: {
     type: String,
-    required: true,
     enum: ["BACKLOG", "ONGOING", "DONE", "CANCELED"],
     default: "BACKLOG"
   },

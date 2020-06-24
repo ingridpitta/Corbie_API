@@ -24,7 +24,7 @@ class TasksController {
       project: id
     };
 
-    const newTask = await Task.insertOne(data);
+    const newTask = await Task.create(data);
 
     res.status(200).json({ task: newTask });
   };
