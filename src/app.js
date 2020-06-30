@@ -13,10 +13,11 @@ class App {
   }
 
   middlewares = () => {
+    this.app.use(express.static(__dirname  + "/public"));
     this.app.use(express.json());
     this.app.use(
       cors({
-        origin: "http://localhost:3000",
+        origin: [process.env.URL_DEV, process.env.URL_PROD],
         methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
       })
     );
@@ -24,6 +25,9 @@ class App {
 
   routes = () => {
     this.app.use("/api", apiRoutes);
+    this.app.use((req, res) => {
+      res.sendFile(__dirname + "/public/index.html");
+    });
   };
 }
 
