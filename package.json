@@ -9,7 +9,7 @@
     "dev": "nodemon --exec babel-node src/server.js",
     "server": "node ./dist-server/server.js",
     "start": "npm-run-all build server",
-    "transpile": "babel ./src --out-dir dist-server"
+    "transpile": "babel ./src --ignore src/public --out-dir dist-server --copy-files"
   },
   "repository": {
     "type": "git",

@@ -25,9 +25,9 @@ class App {
 
   routes = () => {
     this.app.use("/api", apiRoutes);
-    // this.app.use((req, res) => {
-    //   res.sendFile(__dirname + "/public/index.html");
-    // });
+    this.app.use((req, res) => {
+      res.sendFile(__dirname + "/public/index.html");
+    });
   };
 }
 

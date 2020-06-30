@@ -25,24 +25,42 @@ var ProjectsController = function ProjectsController() {
   (0, _classCallCheck2["default"])(this, ProjectsController);
   (0, _defineProperty2["default"])(this, "listAll", /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2["default"])( /*#__PURE__*/_regenerator["default"].mark(function _callee(req, res) {
-      var id, projectsFromDb;
+      var id, match, projectsFromDb;
       return _regenerator["default"].wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
               id = req.user.id;
-              _context.next = 3;
+              match = {};
+
+              if (req.query.status) {
+                match.status = req.query.status;
+              }
+
+              if (req.query.dueDate) {
+                match.dueDate = req.query.dueDate;
+              }
+
+              _context.next = 6;
               return _models.Project.find({
                 user: id
+              }).populate({
+                path: "projects",
+                match: match,
+                options: {
+                  sort: {
+                    dueDate: 1
+                  }
+                }
               });
 
-            case 3:
+            case 6:
               projectsFromDb = _context.sent;
               res.status(200).json({
                 projects: projectsFromDb
               });
 
-            case 5:
+            case 8:
             case "end":
               return _context.stop();
           }

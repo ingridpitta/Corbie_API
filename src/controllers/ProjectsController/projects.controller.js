@@ -4,8 +4,24 @@ import { Project } from "../../models";
 class ProjectsController {
   listAll = async (req, res) => {
     const { id } = req.user;
-    const projectsFromDb = await Project.find({user: id});
-
+    const match = {};
+    if (req.query.status) {
+      match.status = req.query.status;
+    }
+    if (req.query.dueDate) {
+      match.dueDate = req.query.dueDate;
+    }
+    const projectsFromDb = await Project.find({ user: id })
+    
+    // const projectsFromDb = await Project.find({ user: id }).populate({
+    //   path: "projects",
+    //   match,
+    //   options: {
+    //     sort: {
+    //       dueDate: 1
+    //     }
+    //   }
+    // });
     res.status(200).json({ projects: projectsFromDb });
   };
 
