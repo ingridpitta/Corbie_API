@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 module.exports = mongoose
-  .connect("mongodb://localhost/corbie", {
+  .connect(process.env.MONGOBD_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
