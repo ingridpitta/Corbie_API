@@ -33,7 +33,6 @@ var projectSchema = new Schema({
   },
   status: {
     type: String,
-    required: true,
     "enum": ["BACKLOG", "ONGOING", "DONE", "CANCELED"],
     "default": "BACKLOG"
   },

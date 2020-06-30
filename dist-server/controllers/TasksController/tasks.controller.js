@@ -95,12 +95,12 @@ var TasksController = function TasksController() {
                 project: id
               });
               _context3.next = 4;
-              return _models.Task.insertOne(data);
+              return _models.Task.create(data);
 
             case 4:
               newTask = _context3.sent;
               res.status(200).json({
-                newTask: newTask
+                task: newTask
               });
 
             case 6:
@@ -148,7 +148,7 @@ var TasksController = function TasksController() {
             case 9:
               editedTask = _context4.sent;
               res.status(200).json({
-                editedTask: editedTask
+                task: editedTask
               });
 
             case 11:

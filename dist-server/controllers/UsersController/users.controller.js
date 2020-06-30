@@ -102,7 +102,7 @@ var UsersController = function UsersController() {
               }
 
               res.status(403).json({
-                message: "Email já cadastrado"
+                message: "Operação não autorizada"
               });
               return _context3.abrupt("return");
 

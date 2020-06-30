@@ -26,15 +26,20 @@ var App = function App() {
 
   (0, _classCallCheck2["default"])(this, App);
   (0, _defineProperty2["default"])(this, "middlewares", function () {
+    _this.app.use(_express["default"]["static"](__dirname + "/public"));
+
     _this.app.use(_express["default"].json());
 
     _this.app.use((0, _cors["default"])({
-      origin: "http://localhost:3000",
+      origin: [process.env.URL_DEV, process.env.URL_PROD],
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
     }));
   });
   (0, _defineProperty2["default"])(this, "routes", function () {
-    _this.app.use("/api", _apiRoutes["default"]);
+    _this.app.use("/api", _apiRoutes["default"]); // this.app.use((req, res) => {
+    //   res.sendFile(__dirname + "/public/index.html");
+    // });
+
   });
   this.app = (0, _express["default"])();
   this.middlewares();

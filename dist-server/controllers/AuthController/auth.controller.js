@@ -33,6 +33,7 @@ var AuthController = function AuthController() {
           switch (_context.prev = _context.next) {
             case 0:
               name = _utils.paramSchema.name, username = _utils.paramSchema.username, password = _utils.paramSchema.password, email = _utils.paramSchema.email;
+              console.log(req.body);
               signupSchema = _joi["default"].object().options({
                 abortEarly: false
               }).keys({
@@ -44,7 +45,7 @@ var AuthController = function AuthController() {
               validation = _joi["default"].validate(req.body, signupSchema);
 
               if (!validation.error) {
-                _context.next = 7;
+                _context.next = 8;
                 break;
               }
 
@@ -57,17 +58,17 @@ var AuthController = function AuthController() {
               res.status(400).json(errors);
               return _context.abrupt("return");
 
-            case 7:
-              _context.next = 9;
+            case 8:
+              _context.next = 10;
               return _models.User.findOne({
                 email: req.body.email
               });
 
-            case 9:
+            case 10:
               userExist = _context.sent;
 
               if (!userExist) {
-                _context.next = 13;
+                _context.next = 14;
                 break;
               }
 
@@ -76,17 +77,17 @@ var AuthController = function AuthController() {
               });
               return _context.abrupt("return");
 
-            case 13:
+            case 14:
               req.body.password = _utils.passwordManager.encrypt(req.body.password);
-              _context.next = 16;
+              _context.next = 17;
               return _models.User.create(req.body);
 
-            case 16:
+            case 17:
               res.status(200).json({
                 message: "Usuário cadastrado com sucesso"
               });
 
-            case 17:
+            case 18:
             case "end":
               return _context.stop();
           }

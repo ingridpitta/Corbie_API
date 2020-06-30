@@ -92,15 +92,15 @@ var ProjectsController = function ProjectsController() {
             case 0:
               user = req.user;
               data = _objectSpread(_objectSpread({}, req.body), {}, {
-                user: user._id
+                user: user.id
               });
               _context3.next = 4;
-              return _models.Project.insertOne(data);
+              return _models.Project.create(data);
 
             case 4:
               newProject = _context3.sent;
               res.status(200).json({
-                newProject: newProject
+                project: newProject
               });
 
             case 6:
@@ -148,7 +148,7 @@ var ProjectsController = function ProjectsController() {
             case 9:
               editedProject = _context4.sent;
               res.status(200).json({
-                editedProject: editedProject
+                project: editedProject
               });
 
             case 11:

@@ -43,10 +43,10 @@ var email = _joi["default"].string().required().email().options(validation("Emai
 
 exports.email = email;
 
-var password = _joi["default"].string().required().min(6).max(100).options(validation("Senha", 5, 100));
+var password = _joi["default"].string().required().min(5).max(100).options(validation("Senha", 5, 100));
 
 exports.password = password;
 
-var username = _joi["default"].string().required().min(6).max(10).options(validation("Usuário", 5, 10));
+var username = _joi["default"].string().required().min(5).max(10).options(validation("Usuário", 5, 10));
 
 exports.username = username;

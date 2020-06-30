@@ -4,7 +4,7 @@ var _interopRequireDefault = require("@babel/runtime/helpers/interopRequireDefau
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
-module.exports = _mongoose["default"].connect("mongodb://localhost/corbie", {
+module.exports = _mongoose["default"].connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }) // eslint-disable-next-line no-console
